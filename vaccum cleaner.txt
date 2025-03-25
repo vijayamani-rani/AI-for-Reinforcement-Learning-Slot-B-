@@ -1,0 +1,16 @@
+def vacuum_cleaner():
+    room = [[0, 0, 1], [0, 1, 0], [1, 0, 0]]  # 0: clean, 1: dirty
+    position = (0, 0)  # Starting position
+
+    def clean(position):
+        x, y = position
+        if room[x][y] == 1:
+            room[x][y] = 0  # Clean the room
+            print(f"Cleaned position: {position}")
+
+    for i in range(len(room)):
+        for j in range(len(room[i])):
+            position = (i, j)
+            clean(position)
+
+vacuum_cleaner()
