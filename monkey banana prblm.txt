@@ -1,0 +1,15 @@
+% Define the state of the problem
+state(monkey, room).
+state(banana, room).
+state(ladder, room).
+
+% Define actions
+climb_ladder :- state(monkey, room), state(ladder, room), 
+                retract(state(monkey, room)), 
+                assert(state(monkey, ladder)).
+
+reach_banana :- state(monkey, ladder), state(banana, room), 
+                retract(state(banana, room)), 
+                assert(state(banana, monkey)).
+
+% Example query: ?- climb_ladder, reach_banana.

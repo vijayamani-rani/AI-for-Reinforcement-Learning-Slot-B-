@@ -1,0 +1,7 @@
+planet(mercury, 0.39).
+planet(venus, 0.72).
+planet(earth, 1.00).
+planet(mars, 1.52).
+
+find_distance(Planet, Distance) :-
+    planet(Planet, Distance).

@@ -1,0 +1,8 @@
+% Define diseases and suggested diets
+diet(diabetes, low_sugar).
+diet(obesity, low_calorie).
+diet(hypertension, low_sodium).
+
+suggest_diet(Disease, Diet) :- diet(Disease, Diet).
+
+% Example query: ?- suggest_diet(diabetes, Diet).

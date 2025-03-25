@@ -1,0 +1,10 @@
+% Define facts
+fact(a).
+fact(b).
+
+% Define rules
+rule(c) :- fact(a), fact(b).
+
+% Backward chaining
+backward_chaining(Goal) :-
+    (rule(Goal) -> write(Goal

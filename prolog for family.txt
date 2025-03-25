@@ -1,0 +1,22 @@
+% Define family members
+male(tom).
+male(bob).
+male(jim).
+female(pam).
+female(liz).
+female(ann).
+female(pat).
+
+% Define relationships
+mother(pam, ann).
+mother(liz, pat).
+father(tom, ann).
+father(bob, pat).
+sister(ann, pat).
+brother(pat, ann).
+
+% Define rules
+mother_relation(Mother, Child) :- mother(Mother, Child).
+father_relation(Father, Child) :- father(Father, Child).
+sister_relation(Sister, Sibling) :- sister(Sister, Sibling).
+brother_relation(Brother, Sibling) :- brother(Brother, Sibling).

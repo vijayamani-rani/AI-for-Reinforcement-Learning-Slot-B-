@@ -1,0 +1,11 @@
+teaches(john, math).
+teaches(mary, science).
+teaches(bob, history).
+
+student_subject(jane, math).
+student_subject(jack, science).
+student_subject(jill, history).
+
+find_teacher(Student, Teacher) :-
+    student_subject(Student, Subject),
+    teaches(Teacher, Subject).

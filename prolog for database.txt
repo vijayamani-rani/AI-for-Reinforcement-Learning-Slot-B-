@@ -1,0 +1,6 @@
+person(john, '1990-01-01').
+person(mary, '1992-02-02').
+person(bob, '1985-03-03').
+
+find_dob(Name, DOB) :-
+    person(Name, DOB).

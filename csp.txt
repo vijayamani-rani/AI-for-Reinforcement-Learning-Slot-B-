@@ -1,0 +1,40 @@
+def is_valid(coloring, node, color):
+    for neighbor in graph[node]:
+        if neighbor in coloring and coloring[neighbor] == color:
+            return False
+    return True
+
+def map_coloring(graph, colors, coloring={}, node=None):
+    if node is None:
+        node = next(iter(graph))  # Start with the first node
+
+    if len(coloring) == len(graph):
+        return coloring
+
+    for color in colors:
+        if is_valid(coloring, node, color):
+            coloring[node] = color
+            result = map_coloring(graph, colors, coloring, next_node(graph, node))
+            if result:
+                return result
+            del coloring[node]
+
+    return None
+
+def next_node(graph, current):
+    for node in graph:
+        if node not in coloring:
+            return node
+    return None
+
+graph = {
+    'A': ['B', 'C'],
+    'B': ['A', 'D', 'E'],
+    'C': ['A', 'F'],
+    'D': ['B'],
+    'E': ['B', 'F'],
+    'F': ['C', 'E']
+}
+colors = ['Red', 'Green', 'Blue']
+solution = map_coloring(graph, colors)
+print("Map Coloring Solution:", solution)

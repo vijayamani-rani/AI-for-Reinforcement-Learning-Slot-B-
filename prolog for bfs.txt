@@ -1,0 +1,27 @@
+% Define nodes and their costs
+node(a, 1).
+node(b, 2).
+node(c, 3).
+node(d, 4).
+
+% Define connections
+connected(a, b).
+connected(a, c).
+connected(b, d).
+connected(c, d).
+
+% Best first search
+best_first_search(Start, Goal, Path) :-
+    search([Start], Goal, [], Path).
+
+search([Goal|Visited], Goal, Visited, Path) :- 
+    reverse([Goal|Visited], Path).
+search([Current|Visited], Goal, Visited, Path) :-
+    findall(Next, (connected(Current, Next), \+ member(Next, Visited)), NextNodes),
+    sort_nodes(NextNodes, SortedNodes),
+    append(SortedNodes, Visited, NewVisited),
+    search(SortedNodes, Goal, NewVisited, Path).
+
+sort_nodes(Nodes, Sorted) :-
+    findall((Cost, Node), (member(Node, Nodes), node(Node, Cost)), CostNodes),
+    keysort(CostNodes, Sorted).

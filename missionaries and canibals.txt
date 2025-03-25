@@ -1,0 +1,33 @@
+def missionaries_and_cannibals():
+    def is_valid(state):
+        m_left, c_left, m_right, c_right = state
+        return (m_left == 0 or m_left >= c_left) and (m_right == 0 or m_right >= c_right)
+
+    def get_next_states(state):
+        m_left, c_left, m_right, c_right = state
+        next_states = []
+        for m in range(3):
+            for c in range(3):
+                if m + c > 2 or (m == 0 and c == 0):
+                    continue
+                new_state = (m_left - m, c_left - c, m_right + m, c_right + c)
+                if is_valid(new_state):
+                    next_states.append(new_state)
+        return next_states
+
+    initial_state = (3, 3, 0, 0)
+    goal_state = (0, 0, 3, 3)
+    queue = [initial_state]
+    visited = set()
+
+    while queue:
+        current_state = queue.pop(0)
+        if current_state == goal_state:
+            print("Reached goal state:", current_state)
+            return
+        visited.add(current_state)
+        for next_state in get_next_states(current_state):
+            if next_state not in visited:
+                queue.append(next_state)
+
+missionaries_and_cannibals()

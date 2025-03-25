@@ -1,0 +1,10 @@
+% Define symptoms and diseases
+symptom(cough, flu).
+symptom(fever, flu).
+symptom(headache, migraine).
+symptom(nausea, food_poisoning).
+
+% Define rules for diagnosis
+diagnose(Disease) :- symptom(Symptom, Disease), write('You may have '), write(Disease), nl.
+
+% Example query: ?- diagnose(Disease).

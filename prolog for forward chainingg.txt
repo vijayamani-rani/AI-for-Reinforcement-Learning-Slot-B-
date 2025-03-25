@@ -1,0 +1,13 @@
+% Define facts
+fact(a).
+fact(b).
+
+% Define rules
+rule(c) :- fact(a), fact(b).
+
+% Forward chaining
+forward_chaining :-
+    rule(c),
+    write('C is true'), nl.
+
+% Example query: ?- forward_chaining.

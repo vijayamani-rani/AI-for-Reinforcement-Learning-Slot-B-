@@ -1,0 +1,35 @@
+def alpha_beta(board, depth, alpha, beta, is_maximizing):
+    score = evaluate(board)
+    if score == 10:
+        return score
+    if score == -10:
+        return score
+    if is_full(board):
+        return 0
+
+    if is_maximizing:
+        best_value = -float('inf')
+        for move in get_available_moves(board):
+            board[move // 3][move % 3] = 'X'
+            best_value = max(best_value, alpha_beta(board, depth + 1, alpha, beta, False))
+            board[move // 3][move % 3] = ' '  # Undo move
+            alpha = max(alpha, best_value)
+            if beta <= alpha:
+                break
+        return best_value
+    else:
+        best_value = float('inf')
+        for move in get_available_moves(board):
+            board[move // 3][move % 3] = 'O'
+            best_value = min(best_value, alpha_beta(board, depth + 1, alpha, beta, True))
+            board[move // 3][move % 3] = ' '  # Undo move
+            beta = min(beta, best_value)
+            if beta <= alpha:
+                break
+        return best_value
+
+# Example usage
+board = [['X', 'O', 'X'],
+         [' ', 'X', 'O'],
+         ['O', ' ', ' ']]
+print("Alpha-Beta score:", alpha_beta(board, 0, -float('inf'), float('inf'), True))
